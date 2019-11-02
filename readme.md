@@ -5,11 +5,12 @@ This plugin provides a source for deoplete that can complete
 * synth names (as in `use_synth :tb303`)
 * fx names (as in `with_fx :wobble`)
 * build in samples names (as in `sample :loop_amen`)
-* custom sample names (as in `sample '~/my/sample/dir', :my_sample`)
+* custom sample names with literal path (as in `sample '~/my/sample/dir', :my_sample`)
 
 ## TODOs
 
 * [ ] keyword and attribute completion
+* [ ] sample names when directory path is a variable
 * [ ] completion after `.`
 
 ## Requirements and installation

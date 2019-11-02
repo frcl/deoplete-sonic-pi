@@ -55,7 +55,8 @@ class Source(Base):
         custom_sample_match = self.__custom_sample_pattern.search(context['input'])
         if custom_sample_match:
             custom_dir = Path(custom_sample_match.group(1))
-            return self.__get_sample_names(custom_dir.expanduser())
+            return self.__get_dir_content(custom_dir.expanduser(),
+                                          AUDIO_FORMATS)
 
         synth_match = self.__synth_pattern.search(context['input'])
         if synth_match:
