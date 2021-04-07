@@ -18,6 +18,7 @@ class Source(Base):
         self.name = 'sonic-pi'
         self.mark = '[sonic]'
         self.filetypes = ['ruby']
+        self.rank = 110
 
         self.__synth_pattern = re.compile(
             r'(use_synth|synth|with_synth|set_current_synth)\s+:(.*)'
@@ -35,8 +36,10 @@ class Source(Base):
 
         fx_name_pattern = re.compile(r'sonic-pi-fx_(.*)')
         synth_name_pattern = re.compile(r'sonic-pi-(.*)')
+
         self.__fxs = []
         self.__synths = []
+
         for name in synth_and_fx:
             if fx_name_pattern.match(name):
                 self.__fxs.append(fx_name_pattern.match(name).group(1))
@@ -47,14 +50,23 @@ class Source(Base):
         return [f.stem for suff in suffixes
                 for f in path.glob(f'*.{suff}')]
 
+    # def __get_variables(self, buffer):
+        # assign_pattern = re.compile(r'([a-zA-Z][a-zA-Z0-9]*)\s*=(.*)')
+        # vars = {}
+        # for line in buffer:
+            # match = assign_pattern.search(line)
+            # if match:
+                # vars[match.group(1)] = match.group(2)
+        # return vars
+
     def gather_candidates(self, context):
         sample_match = self.__sample_pattern.search(context['input'])
         if sample_match:
             return self.__samples
 
-        custom_sample_match = self.__custom_sample_pattern.search(context['input'])
-        if custom_sample_match:
-            custom_dir = Path(custom_sample_match.group(2))
+        csample_match = self.__custom_sample_pattern.search(context['input'])
+        if csample_match:
+            custom_dir = Path(csample_match.group(2))
             return self.__get_dir_content(custom_dir.expanduser(),
                                           AUDIO_FORMATS)
 

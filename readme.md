@@ -13,6 +13,15 @@ This plugin provides a source for deoplete that can complete
 * [ ] sample names when directory path is a variable
 * [ ] completion after `.`
 
+* [ ] build in functions
+    * ring, chord, scale
+    * sample, sample_duration
+    * play, play_pattern, play_pattern_timed
+    * range, bools, knit, spread
+* [ ] chords and scales
+    * major, minor
+    * major_pentatonic
+
 ## Requirements and installation
 
 To be able to use this you need
